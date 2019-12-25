@@ -1,0 +1,88 @@
+{% extends 'base_mine.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'blog/main/css/mine.css' %}">
+{% endblock %}
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'blog/main/js/mine.js' %}"></script>
+{% endblock %}
+
+
+
+{% block content %}
+    {{ block.super }}
+    <div class="container">
+   <div class="jumbotron">
+        <h1>{{ user.u_username }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-3" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
+
+
+            {% for art in article %}
+                <li><a href="#section-{{ art.id }}">{{ art.a_title }}</a></li>
+
+            {% endfor %}
+
+
+
+
+
+
+
+
+
+
+{#                <li class="active"><a href="#section-1">第一部分</a></li>#}
+{#                <li><a href="#section-2">第二部分</a></li>#}
+{#                <li><a href="#section-3">第三部分</a></li>#}
+{#                <li><a href="#section-4">第四部分</a></li>#}
+{#                <li><a href="#section-5">第五部分</a></li>#}
+            </ul>
+        </div>
+        <div class="col-xs-9">
+            {% for arti in article %}
+                <h2 id="section-{{ arti.id }}">{{ arti.a_title }}</h2>
+                <p>{{ arti.a_desc }}</p>
+                <a href="{% url 'blog:article' articleid=arti.id %}">评论</a>
+                <hr>
+
+
+            {% endfor %}
+
+
+
+
+
+{##}
+{#            <h2 id="section-1">第一部分</h2>#}
+{#            <p>Lor.</p>#}
+{##}
+{#            <hr>#}
+{#            <h2 id="section-2">第二部分</h2>#}
+{#            <p>Nulluat.</p>#}
+{##}
+{#            <hr>#}
+{#            <h2 id="section-3">第三部分</h2>#}
+{#            <p>Intnauris.</p>#}
+{##}
+{#            <hr>#}
+{#            <h2 id="section-4">第四部分</h2>#}
+{#            <p>Sus.</p>#}
+{##}
+{#            <hr>#}
+{#            <h2 id="section-5">第五部分</h2>#}
+{#            <p>Nam .</p>#}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+{% endblock %}

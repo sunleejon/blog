@@ -1,0 +1,36 @@
+{% extends 'base_mine.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'blog/main/css/create_article.css' %}">
+{% endblock %}
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'blog/main/js/create_article.js' %}"></script>
+    <script>
+       $.ajaxSetup({
+           data:{csrfmiddlewaretoken:'{{ csrf_token }}'}
+        })
+     </script>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+
+    <div class="text">
+
+        <form role="form">
+
+        <div class="form-group">
+
+            <label for="name">标题</label>
+            <textarea class="form-control" rows="3" id="title"></textarea><label for="name">正文</label>
+            <textarea class="form-control" rows="20" id="article"></textarea>
+            <button type="submit" class="btn btn-success btn-block" id="button">保存</button>
+        </div>
+    </form>
+    </div>
+{% endblock %}
+
+

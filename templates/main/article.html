@@ -1,0 +1,47 @@
+{% extends 'base_mine.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'blog/main/css/article.css' %}">
+{% endblock %}
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'blog/main/js/article.js' %}"></script>
+    <script>
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'}
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <div class="art">
+        <p1 id="tit">{{ article.a_title }}</p1>
+        <p>{{ author.u_username }}</p>
+        <p>{{ article.a_create_time }}</p>
+        <hr>
+        <p>{{ article.a_desc }}</p>
+        <hr>
+        <form role="form">
+            <div class="form-group">
+                <label for="name">评论：</label>
+                <textarea class="form-control" rows="3" id="comment"></textarea>
+                <button type="submit" id="button">提交</button>
+            </div>
+        </form>
+        <hr>
+        {% for i,j in dict_comment.items %}
+            <p align="left">{{ j }}评论说：</p>
+            <p align="left">{{ i }}</p>
+            <hr>
+        {% endfor %}
+
+
+    </div>
+
+
+
+
+{% endblock %}
